@@ -43,10 +43,15 @@ class HomeScreen extends HookConsumerWidget {
         ref.read(gameProvider).init();
       }
     });
+
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Tic Tac Toe'),
+        ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: BoardBuilder.buildBoard(
             gameVm.matrix,
                 (index, model) => RowBuilder(xIndex: index, gameProvider: gameVm),

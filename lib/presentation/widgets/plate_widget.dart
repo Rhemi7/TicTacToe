@@ -28,7 +28,7 @@ class PlateWidget extends HookConsumerWidget {
           onPressed: () {
             ref.read(gameProvider).plateTapped(value, xIndex, yIndex);
           },
-          child: Text(value)),
+          child: Text(value, style: const TextStyle(fontSize: 25),)),
     );
   }
 }

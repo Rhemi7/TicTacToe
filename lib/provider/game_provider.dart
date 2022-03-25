@@ -46,6 +46,7 @@ class GameProvider extends ChangeNotifier{
       if(getWinner(row, column)) {
         _isGameOver = true;
       }
+      totalMoves++;
 
       notifyListeners();
     }
