@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Animation widget for dialog
 class BlinkingWidget extends StatefulWidget {
   final Widget widget;
   const BlinkingWidget(this.widget, {Key? key}) : super(key: key);

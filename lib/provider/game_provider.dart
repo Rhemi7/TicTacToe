@@ -7,15 +7,20 @@ final gameProvider = ChangeNotifierProvider((ref) => GameProvider());
 
 class GameProvider extends ChangeNotifier{
 
+  //Checks to know who the last player to make a move.
+  //It is initialized to no player by default
+
   String lastMove = PlayerType.noPlayer;
 
   static const _countMatrix = 3;
 
+  //Keeps track of the total number of moves made by both players
   int totalMoves = 0;
 
   List<List<String>> _matrix = [];
   List<List<String>> get matrix => _matrix;
 
+  //This is used to check whenever there is a winnner
   late bool _isGameOver;
   bool get isGameOver => _isGameOver;
 
@@ -23,12 +28,14 @@ class GameProvider extends ChangeNotifier{
     init();
   }
 
+  //Initializing of the generated board
   init() {
     _matrix = List.generate(_countMatrix, (index) => List.generate(_countMatrix, (index) => PlayerType.noPlayer));
     totalMoves = 0;
     _isGameOver = false;
   }
 
+  //Function updates a square when it is tapped
   void plateTapped(String value, int row, int column) {
     if (value == PlayerType.noPlayer) {
       final newValue = lastMove == PlayerType.playerX ? PlayerType.playerO : PlayerType.playerX;
@@ -40,12 +47,12 @@ class GameProvider extends ChangeNotifier{
         _isGameOver = true;
       }
 
-
       notifyListeners();
     }
   }
 
 
+  //This function returns a bool to decide who the winner is
   bool getWinner(int x, int y) {
     int column = 0, row = 0, diag = 0, crossDiagonal = 0;
 

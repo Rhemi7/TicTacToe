@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:ui' as ui;
-import '../provider/game_provider.dart';
 import 'blinking_widget.dart';
 
 class PopUpDialog extends HookConsumerWidget{
@@ -28,7 +27,7 @@ class PopUpDialog extends HookConsumerWidget{
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Text(
-                  '${player.toUpperCase()} is the Winner!',
+                  'Player ${player.toUpperCase()} is the Winner!',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
@@ -43,7 +42,6 @@ class PopUpDialog extends HookConsumerWidget{
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.blue ,
-                        // minimumSize: const Size.square(90),
                       ) ,
                       onPressed: () {
                         Navigator.pop(context);
