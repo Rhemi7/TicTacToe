@@ -1,4 +1,8 @@
+
 import 'package:flutter/material.dart';
+
+import 'enums/player_enum.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -6,6 +10,13 @@ class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
+
+// List<T> listBuilder = [];
+// Function(int index, T model) builder;
+String value = '';
+Player lastMove = Player.playerNone;
+List<String> gamePlay = [];
+
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
@@ -17,27 +28,102 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                PlateWidget(),
-                PlateWidget(), PlateWidget(),
+              children: [
+                PlateWidget(
+                  onPressed: () {
+                    setState(() {
+                      value = lastMove == Player.playerNone ? "X" : lastMove == Player.playerX ? "Y" : "X";
+                      print(value);
+                      lastMove =   value == "X" ? Player.playerX : Player.playerY;
+                    });
+                  },
+                ),
+                PlateWidget(
+                  onPressed: () {
+                    setState(() {
+                      value = lastMove == Player.playerNone ? "X" : lastMove == Player.playerX ? "Y" : "X";
+                      print(value);
+                      lastMove =   value == "X" ? Player.playerX : Player.playerY;
+                    });
+                  },
+                ),
+                PlateWidget(
+                  onPressed: () {
+                    setState(() {
+                      value = lastMove == Player.playerNone ? "X" : lastMove == Player.playerX ? "Y" : "X";
+                      print(value);
+                      lastMove =   value == "X" ? Player.playerX : Player.playerY;
+                    });
+                  },
+                ),
                 // Size.square(90);
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                PlateWidget(),
-                PlateWidget(),
-                PlateWidget(),
+
+              children: [
+                PlateWidget(
+                  onPressed: () {
+                    setState(() {
+                      value = lastMove == Player.playerNone ? "X" : lastMove == Player.playerX ? "Y" : "X";
+                      print(value);
+                      lastMove =   value == "X" ? Player.playerX : Player.playerY;
+                    });
+                  },
+                ),
+                PlateWidget(
+                  onPressed: () {
+                    setState(() {
+                      value = lastMove == Player.playerNone ? "X" : lastMove == Player.playerX ? "Y" : "X";
+                      print(value);
+                      lastMove =   value == "X" ? Player.playerX : Player.playerY;
+                    });
+                  },
+                ),
+                PlateWidget(
+                  onPressed: () {
+                    setState(() {
+                      value = lastMove == Player.playerNone ? "X" : lastMove == Player.playerX ? "Y" : "X";
+                      print(value);
+                      lastMove =   value == "X" ? Player.playerX : Player.playerY;
+                    });
+                  },
+                ),
                 // Size.square(90);
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                PlateWidget(),
-                PlateWidget(),
-                PlateWidget(),
+
+              children: [
+                PlateWidget(
+                  onPressed: () {
+                    setState(() {
+                      value = lastMove == Player.playerNone ? "X" : lastMove == Player.playerX ? "Y" : "X";
+                      print(value);
+                      lastMove =   value == "X" ? Player.playerX : Player.playerY;
+                    });
+                  },
+                ),
+                PlateWidget(
+                  onPressed: () {
+                    setState(() {
+                      value = lastMove == Player.playerNone ? "X" : lastMove == Player.playerX ? "Y" : "X";
+                      print(value);
+                      lastMove =   value == "X" ? Player.playerX : Player.playerY;
+                    });
+                  },
+                ),
+                PlateWidget(
+                  onPressed: () {
+                    setState(() {
+                      value = lastMove == Player.playerNone ? "X" : lastMove == Player.playerX ? "Y" : "X";
+                      print(value);
+                      lastMove =   value == "X" ? Player.playerX : Player.playerY;
+                    });
+                  },
+                ),
                 // Size.square(90);
               ],
             ),
@@ -51,7 +137,12 @@ class _HomeScreenState extends State<HomeScreen> {
 class PlateWidget extends StatelessWidget {
   const PlateWidget({
     Key? key,
+    this.onPressed,
+
   }) : super(key: key);
+
+  final void Function()? onPressed;
+
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +152,8 @@ class PlateWidget extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             primary: Colors.blue,
             minimumSize: const Size.square(90),
-          ),
-          onPressed: () {},
-          child: Text("")),
+          ) ,
+          onPressed: onPressed, child: Text(value)),
     );
   }
 }
