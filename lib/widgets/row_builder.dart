@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/utils/board_builder.dart';
 
-import '../provider/game_provider.dart';
-import 'home_screen.dart';
+import '../../provider/game_provider.dart';
+import '../home_screen.dart';
 
 class RowBuilder extends StatelessWidget {
   const RowBuilder({Key? key, required this.xIndex, required this.gameProvider})

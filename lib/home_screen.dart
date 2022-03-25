@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tictactoe/provider/game_provider.dart';
-import 'package:tictactoe/row_builder.dart';
+import 'package:tictactoe/widgets/pop_up_dialog.dart';
+import 'package:tictactoe/widgets/row_builder.dart';
 import 'package:tictactoe/utils/board_builder.dart';
 
 import 'enums/player_enum.dart';
@@ -13,6 +14,32 @@ class HomeScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final gameVm = ref.watch(gameProvider);
+
+    void showInSnackBar(String value) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(value),
+        ),
+      );
+    }
+
+    showWinnerDialog(String winner) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return PopUpDialog(player: winner);
+          });
+      ref.read(gameProvider).init();
+    }
+
+    ref.listen<GameProvider>(gameProvider, (p, provider) {
+      if (provider.isGameOver) {
+        showWinnerDialog(provider.lastMove);
+      } else if (provider.isGameOver == false && provider.totalMoves == 9) {
+        showInSnackBar("It is a draw");
+        ref.read(gameProvider).init();
+      }
+    });
 
 
     return SafeArea(

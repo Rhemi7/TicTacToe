@@ -11,9 +11,13 @@ class GameProvider extends ChangeNotifier{
 
   static const _countMatrix = 3;
 
+  int totalMoves = 0;
 
   List<List<String>> _matrix = [];
   List<List<String>> get matrix => _matrix;
+
+  late bool _isGameOver;
+  bool get isGameOver => _isGameOver;
 
   GameProvider() {
     init();
@@ -21,6 +25,8 @@ class GameProvider extends ChangeNotifier{
 
   init() {
     _matrix = List.generate(_countMatrix, (index) => List.generate(_countMatrix, (index) => PlayerType.noPlayer));
+    totalMoves = 0;
+    _isGameOver = false;
   }
 
   void plateTapped(String value, int row, int column) {
@@ -30,9 +36,34 @@ class GameProvider extends ChangeNotifier{
 
       _matrix[row][column] = newValue;
 
+      if(getWinner(row, column)) {
+        _isGameOver = true;
+      }
+
 
       notifyListeners();
     }
+  }
+
+
+  bool getWinner(int x, int y) {
+    int column = 0, row = 0, diag = 0, crossDiagonal = 0;
+
+    final player = _matrix[x][y];
+
+    const n = _countMatrix;
+
+    for (int i = 0; i < n; i++) {
+      if (_matrix[x][i] == player) row++;
+
+      if (_matrix[i][y] == player) column++;
+
+      if (_matrix[i][i] == player) diag++;
+
+      if(_matrix[i][_countMatrix - 1 - 1] == player) crossDiagonal++;
+    }
+
+    return row == n  || column == n|| diag == n || crossDiagonal == n;
   }
 
 
