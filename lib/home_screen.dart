@@ -51,6 +51,7 @@ class PlateWidget extends HookConsumerWidget {
             minimumSize: const Size.square(90),
           ),
           onPressed: () {
+            ref.read(gameProvider).plateTapped(value, xIndex, yIndex);
           },
           child: Text(value)),
     );

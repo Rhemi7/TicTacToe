@@ -23,4 +23,17 @@ class GameProvider extends ChangeNotifier{
     _matrix = List.generate(_countMatrix, (index) => List.generate(_countMatrix, (index) => PlayerType.noPlayer));
   }
 
+  void plateTapped(String value, int row, int column) {
+    if (value == PlayerType.noPlayer) {
+      final newValue = lastMove == PlayerType.playerX ? PlayerType.playerO : PlayerType.playerX;
+      lastMove = newValue;
+
+      _matrix[row][column] = newValue;
+
+
+      notifyListeners();
+    }
+  }
+
+
 }
